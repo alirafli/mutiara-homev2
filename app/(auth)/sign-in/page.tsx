@@ -1,12 +1,17 @@
 import React from "react";
 import { Metadata } from "next";
+import SigninForm from "./components/SignInForm";
 
 export const metadata: Metadata = {
   title: "Sign In",
 };
 
 async function Signin() {
-  return <div>sign in page</div>;
+  return (
+    <div>
+      <SigninForm />
+    </div>
+  );
 }
 
 export default Signin;
