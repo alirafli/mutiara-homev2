@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/pagination";
 import { House } from "@/types/house";
 import HouseCard from "./HouseCard";
+import Maps from "./Maps";
 
 interface FindHomeSectionProps {
   home: House[];
@@ -84,7 +85,9 @@ const FindHomeSection = ({ home }: FindHomeSectionProps) => {
           </Pagination>
         </Card>
 
-        <Card className="w-full"></Card>
+        <Card className="w-full">
+          <Maps houseData={home} />
+        </Card>
       </div>
     </div>
   );
