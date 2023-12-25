@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Button } from "./button";
+import Link from "next/link";
 
 const Topbar = () => {
   const [navbarCollapsed, setNavbarCollapsed] = useState(true);
@@ -9,6 +10,7 @@ const Topbar = () => {
   const handleNavbarCollapsed = () => {
     setNavbarCollapsed(!navbarCollapsed);
   };
+
   const item = [
     { title: "Halaman Utama", href: "/", isLogin: false },
     {
@@ -31,9 +33,9 @@ const Topbar = () => {
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="images/logo.png" className="h-16" alt="Mutiara Home Logo" />
-        </a>
+        </Link>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
