@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Button } from "./button";
 import Link from "next/link";
+import Image from "next/image";
 
 const Topbar = () => {
   const [navbarCollapsed, setNavbarCollapsed] = useState(true);
@@ -37,7 +38,9 @@ const Topbar = () => {
           href="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          <img src="images/logo.png" className="h-16" alt="Mutiara Home Logo" />
+          <div className="relative h-14 w-14">
+            <Image src="/images/logo.png" fill alt="Mutiara Home Logo" />
+          </div>
         </Link>
         <button
           data-collapse-toggle="navbar-default"
