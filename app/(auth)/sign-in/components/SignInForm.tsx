@@ -73,7 +73,7 @@ function SigninForm() {
   }
 
   return (
-    <div className="h-[calc(100vh-200px)]">
+    <div>
       <Card className="shadow-lg dark:shadow-lg-dark p-4 md:p-6 md:w-[380px] mx-5 md:mx-auto mt-20">
         <CardTitle className="mb-2">Halaman Login</CardTitle>
         <Form {...form}>
