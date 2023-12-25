@@ -19,6 +19,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AiOutlineLoading } from "react-icons/ai";
+import { login } from "../actions";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { setUserId } from "@/lib/redux/features/userSlice";
+import { useToast } from "@/components/ui/use-toast";
+import { redirect } from "next/navigation";
 
 const formSchema = z.object({
   email: z
@@ -32,8 +37,10 @@ const formSchema = z.object({
 });
 
 function SigninForm() {
-  // const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
+  const dispatch = useAppDispatch();
+  const { toast } = useToast();
+  const { userId } = useAppSelector((state) => state.persistUserReducer);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,24 +52,29 @@ function SigninForm() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     startTransition(async () => {
-      // const result = await signInWithEmailAndPassword(values);
-      // const { error } = JSON.parse(result);
-      // eslint-disable-next-line no-console
-      console.log(values);
+      const { data } = await login(values.email, values.password);
 
-      // if (error && error.message)
-      //   toast({
-      //     variant: "destructive",
-      //     title: "Fail to Login",
-      //     description: `${error.status}: ${error.message}`,
-      //   });
+      if (data) {
+        dispatch(setUserId(data.id));
+      }
+
+      if (!data)
+        toast({
+          variant: "destructive",
+          title: "gagal Login!",
+          description: `email atau password salah`,
+        });
       form.reset();
     });
   }
 
+  if (userId) {
+    redirect("/");
+  }
+
   return (
-    <Card className="shadow-lg dark:shadow-lg-dark p-4 md:p-6 md:w-[380px] mx-5 md:mx-auto mt-20">
-      <div>
+    <div className="h-[calc(100vh-200px)]">
+      <Card className="shadow-lg dark:shadow-lg-dark p-4 md:p-6 md:w-[380px] mx-5 md:mx-auto mt-20">
         <CardTitle className="mb-2">Halaman Login</CardTitle>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -110,8 +122,8 @@ function SigninForm() {
             </Button>
           </form>
         </Form>
-      </div>
-    </Card>
+      </Card>
+    </div>
   );
 }
 

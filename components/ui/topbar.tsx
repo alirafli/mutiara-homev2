@@ -4,9 +4,17 @@ import React, { useState } from "react";
 import { Button } from "./button";
 import Link from "next/link";
 import Image from "next/image";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { reset } from "@/lib/redux/features/userSlice";
 
 const Topbar = () => {
   const [navbarCollapsed, setNavbarCollapsed] = useState(true);
+  const { userId } = useAppSelector((state) => state.persistUserReducer);
+  const dispatch = useAppDispatch();
+
+  const handleSignOut = () => {
+    dispatch(reset());
+  };
 
   const handleNavbarCollapsed = () => {
     setNavbarCollapsed(!navbarCollapsed);
@@ -27,7 +35,7 @@ const Topbar = () => {
     {
       title: "Laporan Penyewa",
       href: "/dashboard",
-      isLogin: true,
+      isLogin: !userId,
     },
   ];
 
@@ -87,9 +95,15 @@ const Topbar = () => {
                 </li>
               ))}
 
-            <Button>
-              <Link href="/sign-in">Masuk</Link>
-            </Button>
+            {!userId ? (
+              <Button>
+                <Link href="/sign-in">Masuk</Link>
+              </Button>
+            ) : (
+              <Button variant="outline" onClick={handleSignOut}>
+                <Link href="/">Keluar</Link>
+              </Button>
+            )}
           </ul>
         </div>
       </div>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Topbar from "@/components/ui/topbar";
 import "../globals.css";
+import Footer from "@/components/ui/Footer";
+import { ReduxProviders } from "@/lib/redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +21,11 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Topbar />
-        {children}
+        <ReduxProviders>
+          <Topbar />
+          {children}
+          <Footer />
+        </ReduxProviders>
       </body>
     </html>
   );
