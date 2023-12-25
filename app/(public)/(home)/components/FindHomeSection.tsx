@@ -57,7 +57,7 @@ const FindHomeSection = ({ home }: FindHomeSectionProps) => {
       <div className="flex w-full gap-6">
         <Card className="w-full pb-8">
           <CardHeader>
-            <CardTitle>Informasi Rumah Sewa {page}</CardTitle>
+            <CardTitle>Informasi Rumah Sewa</CardTitle>
           </CardHeader>
           <CardContent>
             {home.slice((page - 1) * 2, page * 2).map((e) => (
