@@ -54,7 +54,7 @@ const FindHomeSection = ({ home }: FindHomeSectionProps) => {
         Cari Rumah Sewa
       </h2>
 
-      <div className="flex w-full gap-6">
+      <div className="flex flex-col md:flex-row w-full gap-6">
         <Card className="w-full pb-8">
           <CardHeader>
             <CardTitle>Informasi Rumah Sewa</CardTitle>
