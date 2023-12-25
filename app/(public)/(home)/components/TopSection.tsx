@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 function TopSection() {
@@ -8,11 +9,17 @@ function TopSection() {
           Cari kontrakan dengan mudah
         </h2>
         <h4 className="scroll-m-20 text-lg font-medium tracking-tight">
-         Cari rumah sewa secara online tanpa perlu datang langsung!
+          Cari rumah sewa secara online tanpa perlu datang langsung!
         </h4>
       </div>
 
-      <div className="h-72 w-72 bg-red-800"></div>
+      <div className="relative h-56 md:h-96 w-56 md:w-96">
+        <Image
+          src="images/house-searching.svg"
+          alt="House Searching Storyset"
+          fill
+        />
+      </div>
     </div>
   );
 }

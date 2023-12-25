@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 function AboutUsSection() {
@@ -7,15 +8,20 @@ function AboutUsSection() {
         Tentang Kami
       </h2>
 
-      <div className="flex  md:gap-48 flex-col md:flex-row">
+      <div className="flex items-center md:gap-48 flex-col md:flex-row">
         <div className="flex gap-6 mx-auto">
-          <div className="h-40 w-40 bg-red-800"></div>
-          <div className="h-40 w-40 bg-red-800"></div>
+          <div className="relative h-56 md:h-96 w-56 md:w-96">
+            <Image
+              src="images/House searching-bro.svg"
+              alt="House Searching Storyset"
+              fill
+            />
+          </div>
         </div>
 
         <p className="leading-7 [&:not(:first-child)]:mt-6 text-center md:text-left">
-          The king, seeing how much happier his subjects were, realized the
-          error of his ways and repealed the joke tax.
+          Menyediakan rumah yang dapat disewakan di daerah Tangerang Selatan
+          dengan harga yang terjangkau.
         </p>
       </div>
     </div>
