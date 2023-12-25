@@ -50,7 +50,10 @@ const FindHomeSection = ({ home }: FindHomeSectionProps) => {
 
   return (
     <div className="mt-24 md:mt-44 max-w-screen-xl flex flex-col items-center justify-between px-4 mx-auto">
-      <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0 mx-auto mb-5">
+      <h2
+        className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0 mx-auto mb-5"
+        id="find-home"
+      >
         Cari Rumah Sewa
       </h2>
 

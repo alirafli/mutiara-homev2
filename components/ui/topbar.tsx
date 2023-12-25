@@ -16,17 +16,17 @@ const Topbar = () => {
     { title: "Halaman Utama", href: "/", isLogin: false },
     {
       title: "Cari Rumah Sewa",
-      href: "/renter-profile",
+      href: "/#find-home",
       isLogin: false,
     },
     {
       title: "Kontak Kami",
-      href: "/rent-house",
+      href: "/dashboard",
       isLogin: false,
     },
     {
       title: "Laporan Penyewa",
-      href: "/renter-report",
+      href: "/dashboard",
       isLogin: true,
     },
   ];
@@ -36,6 +36,7 @@ const Topbar = () => {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
           href="/"
+          onClick={handleNavbarCollapsed}
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <div className="relative h-14 w-14">
@@ -76,12 +77,13 @@ const Topbar = () => {
               .filter((e) => !e.isLogin)
               .map((e) => (
                 <li key={e.title}>
-                  <a
-                    href="#"
+                  <Link
+                    onClick={handleNavbarCollapsed}
+                    href={e.href}
                     className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   >
                     {e.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
 
