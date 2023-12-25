@@ -4,6 +4,7 @@ import TopSection from "./components/TopSection";
 import AboutUsSection from "./components/AboutUsSection";
 import FindHomeSection from "./components/FindHomeSection";
 import { getHouseData } from "./actions";
+import ContactUsSection from "./components/ContactUsSection";
 
 export const metadata: Metadata = {
   title: "Home Page",
@@ -17,6 +18,7 @@ async function Dashboard() {
       <TopSection />
       <AboutUsSection />
       <FindHomeSection home={data ?? []} />
+      <ContactUsSection />
     </div>
   );
 }

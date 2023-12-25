@@ -21,7 +21,7 @@ const Topbar = () => {
     },
     {
       title: "Kontak Kami",
-      href: "/dashboard",
+      href: "/#contact-us",
       isLogin: false,
     },
     {
