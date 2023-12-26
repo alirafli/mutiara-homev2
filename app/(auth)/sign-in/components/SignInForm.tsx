@@ -58,7 +58,7 @@ function SigninForm() {
         redirect("/");
       }
 
-      if (!data && data.length === 0)
+      if (!data)
         toast({
           variant: "destructive",
           title: "gagal Login!",
