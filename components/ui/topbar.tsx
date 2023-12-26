@@ -40,7 +40,7 @@ const Topbar = () => {
   ];
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 z-[9999]">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 sticky top-0">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
           href="/"
