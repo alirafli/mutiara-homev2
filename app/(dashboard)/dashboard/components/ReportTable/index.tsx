@@ -22,6 +22,7 @@ import {
 import AddDataModal from "@/components/ui/addDataModal";
 import { Report } from "@/types/report";
 import { Button } from "@/components/ui/button";
+import AddReport from "../AddReport";
 
 interface ReportTableProps {
   report: Report[];
@@ -60,8 +61,6 @@ const ReportTable = ({ report }: ReportTableProps) => {
 
   return (
     <div className="max-w-screen-xl items-center justify-between px-4 mx-auto mt-24">
-      {/* <Filter table={table} /> */}
-
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -120,8 +119,7 @@ const ReportTable = ({ report }: ReportTableProps) => {
           modal={modal}
           handleModalOpen={handleModalOpen}
         >
-          {/* <AddRenterForm handleModalOpen={handleModalOpen} /> */}
-          <h1>tambah data</h1>
+          <AddReport handleModalOpen={handleModalOpen} />
         </AddDataModal>
 
         <div className="space-x-2">

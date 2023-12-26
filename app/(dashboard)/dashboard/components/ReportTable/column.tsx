@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-// import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/components/ui/use-toast";
 import { Report } from "@/types/report";
 
 import { ColumnDef } from "@tanstack/react-table";
@@ -18,6 +18,8 @@ import { MoreHorizontal } from "lucide-react";
 import { LuArrowDownUp } from "react-icons/lu";
 import ActionDataModal from "@/components/ui/actionDataModal";
 import AlertActionModal from "@/components/ui/AlertActionModal";
+import UpdateReport from "../UpdateReport";
+import { deleteReportById } from "../../actions";
 
 const renderStatus = (status: string) => {
   return (
@@ -89,15 +91,16 @@ export const columns: ColumnDef<Report>[] = [
       const reportIdSlice = reportData.id?.slice(0, 5);
 
       const deleteReport = async () => {
-        // if (result.error && result.error.message) {
-        //   toast({
-        //     title: `gagal menghapus ${reportIdSlice}`,
-        //   });
-        // } else {
-        //   toast({
-        //     title: `berhasil menghapus ${reportIdSlice}`,
-        //   });
-        // }
+        const result = await deleteReportById(reportData.id);
+        if (result.error && result.error.message) {
+          toast({
+            title: `gagal menghapus ${reportIdSlice}`,
+          });
+        } else {
+          toast({
+            title: `berhasil menghapus ${reportIdSlice}`,
+          });
+        }
       };
 
       return (
@@ -142,10 +145,10 @@ export const columns: ColumnDef<Report>[] = [
 
               <ActionDataModal
                 trigger="Update"
-                title={`${reportData.title}`}
+                title={`keluhan #${reportIdSlice}`}
                 status={<Badge>Edit</Badge>}
               >
-                <h1>updated modal</h1>
+                <UpdateReport />
               </ActionDataModal>
             </div>
 
