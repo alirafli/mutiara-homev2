@@ -35,6 +35,16 @@ const renderStatus = (status: string) => {
   );
 };
 
+// const renderContent = (reportData: Report) => {
+//   return [
+//     { title: "id", value: reportData.id },
+//     { title: "judul", value: reportData.title },
+//     { title: "jenis keluhan", value: reportData.type },
+//     { title: "jawaban pengelola", value: reportData.answer },
+//     { title: "catatan tambahan", value: reportData.note },
+//   ];
+// };
+
 export const columns: ColumnDef<Report>[] = [
   {
     accessorKey: "id",
@@ -103,10 +113,31 @@ export const columns: ColumnDef<Report>[] = [
             <div className="flex flex-col pl-2">
               <ActionDataModal
                 trigger="Detail"
-                title={`${reportData.title}`}
+                title={`keluhan #${reportIdSlice}`}
                 status={<Badge>View</Badge>}
               >
-                <h1>detailed contet</h1>
+                <div className="flex flex-col gap-6 break-all">
+                  <div className="flex gap-6 items-center mt-6">
+                    <b>status:</b>
+                    {renderStatus(reportData.status)}
+                  </div>
+
+                  <h1>
+                    <b>judul keluhan:</b> {reportData.title}
+                  </h1>
+
+                  <h1>
+                    <b>jenis keluhan:</b> {reportData.type}
+                  </h1>
+
+                  <h1>
+                    <b>jawaban pengelola:</b> {reportData.answer ?? "-"}
+                  </h1>
+
+                  <h1>
+                    <b>catatan tambahan:</b> {reportData.note ?? "-"}
+                  </h1>
+                </div>
               </ActionDataModal>
 
               <ActionDataModal

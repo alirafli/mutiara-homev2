@@ -22,8 +22,8 @@ import { AiOutlineLoading } from "react-icons/ai";
 import { login } from "../actions";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { setUserId } from "@/lib/redux/features/userSlice";
-import { useToast } from "@/components/ui/use-toast";
 import { redirect } from "next/navigation";
+import { toast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   email: z
@@ -39,7 +39,6 @@ const formSchema = z.object({
 function SigninForm() {
   const [isPending, startTransition] = useTransition();
   const dispatch = useAppDispatch();
-  const { toast } = useToast();
   const { userId } = useAppSelector((state) => state.persistUserReducer);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -56,9 +55,10 @@ function SigninForm() {
 
       if (data) {
         dispatch(setUserId(data.id));
+        redirect("/");
       }
 
-      if (!data)
+      if (!data && data.length === 0)
         toast({
           variant: "destructive",
           title: "gagal Login!",

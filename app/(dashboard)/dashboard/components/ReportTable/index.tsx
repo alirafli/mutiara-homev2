@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { redirect } from "next/navigation";
 import { useAppSelector } from "@/hooks/useRedux";
 import {
@@ -13,10 +13,8 @@ import {
 } from "@/components/ui/table";
 import { columns } from "./column";
 import {
-  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
@@ -31,27 +29,28 @@ interface ReportTableProps {
 
 const ReportTable = ({ report }: ReportTableProps) => {
   const { userId } = useAppSelector((state) => state.persistUserReducer);
-
   const [modal, setModal] = React.useState(false);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+
+  const reportFilter = useMemo(
+    () => report.filter((e) => e.user_id.id === userId),
+    [report, userId]
   );
+
+  if (!userId) {
+    redirect("/");
+  }
 
   const handleModalOpen = (value: boolean) => {
     setModal(value);
   };
 
   const table = useReactTable({
-    data: report,
+    data: reportFilter,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onColumnFiltersChange: setColumnFilters,
     getSortedRowModel: getSortedRowModel(),
-    state: {
-      columnFilters,
-    },
+
     initialState: {
       pagination: {
         pageSize: 6,
@@ -59,9 +58,6 @@ const ReportTable = ({ report }: ReportTableProps) => {
     },
   });
 
-  if (!userId) {
-    redirect("/");
-  }
   return (
     <div className="max-w-screen-xl items-center justify-between px-4 mx-auto mt-24">
       {/* <Filter table={table} /> */}
@@ -120,7 +116,7 @@ const ReportTable = ({ report }: ReportTableProps) => {
       <div className="flex items-center justify-end space-x-2 py-4">
         <AddDataModal
           triggerTitle="Tambah Data"
-          title="Tambah data penyewa"
+          title="Tambah keluhan"
           modal={modal}
           handleModalOpen={handleModalOpen}
         >

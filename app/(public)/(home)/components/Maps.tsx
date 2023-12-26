@@ -31,12 +31,12 @@ function Maps({ houseData }: MapsPopUpProps) {
   });
 
   return (
-    <div className="h-[350px] md:h-[100%] z-0">
+    <div className="relative h-[350px] md:h-[100%] z-[1]">
       <MapContainer
         center={[-6.249530526835478, 106.69078923880977]}
         zoom={17}
         scrollWheelZoom
-        className="h-[100%] w-[100%]"
+        className="h-[100%] w-[100%] -z-10"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

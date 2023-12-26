@@ -4,6 +4,7 @@ import Topbar from "@/components/ui/topbar";
 import "../globals.css";
 import Footer from "@/components/ui/Footer";
 import { ReduxProviders } from "@/lib/redux/provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default async function RootLayout({
           <Topbar />
           {children}
           <Footer />
+          <Toaster />
         </ReduxProviders>
       </body>
     </html>
