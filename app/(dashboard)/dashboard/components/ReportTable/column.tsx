@@ -19,6 +19,22 @@ import { LuArrowDownUp } from "react-icons/lu";
 import ActionDataModal from "@/components/ui/actionDataModal";
 import AlertActionModal from "@/components/ui/AlertActionModal";
 
+const renderStatus = (status: string) => {
+  return (
+    <div
+      className={`font-medium w-fit py-1 px-3 rounded-full ${
+        status === "selesai"
+          ? "bg-green-600 text-white"
+          : status === "proses"
+          ? "bg-yellow-300"
+          : "bg-zinc-800 text-white"
+      }`}
+    >
+      {status}
+    </div>
+  );
+};
+
 export const columns: ColumnDef<Report>[] = [
   {
     accessorKey: "id",
@@ -51,7 +67,7 @@ export const columns: ColumnDef<Report>[] = [
     header: "status",
     cell: ({ getValue }) => {
       const value = getValue() as string;
-      return value;
+      return renderStatus(value);
     },
   },
   {
