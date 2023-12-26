@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { reset } from "@/lib/redux/features/userSlice";
+import { redirect } from "next/navigation";
 
 const Topbar = () => {
   const [navbarCollapsed, setNavbarCollapsed] = useState(true);
@@ -14,6 +15,7 @@ const Topbar = () => {
 
   const handleSignOut = () => {
     dispatch(reset());
+    redirect("/");
   };
 
   const handleNavbarCollapsed = () => {
