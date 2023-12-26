@@ -57,3 +57,24 @@ export async function deleteReportById(id?: string) {
     return { data: null, error: error as Error };
   }
 }
+
+export async function editReport(
+  payload: z.infer<typeof FormSchema>,
+  id: string
+) {
+  const supabase = await createSupabaseServerClient();
+
+  try {
+    const { data, error } = await supabase
+      .from("report_renter")
+      .update(payload)
+      .eq("id", id)
+      .select();
+
+    revalidatePath("/dashboard");
+
+    return { data, error };
+  } catch (error) {
+    return { data: null, error: error as Error };
+  }
+}

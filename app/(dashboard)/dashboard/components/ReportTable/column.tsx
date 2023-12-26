@@ -37,15 +37,20 @@ const renderStatus = (status: string) => {
   );
 };
 
-// const renderContent = (reportData: Report) => {
-//   return [
-//     { title: "id", value: reportData.id },
-//     { title: "judul", value: reportData.title },
-//     { title: "jenis keluhan", value: reportData.type },
-//     { title: "jawaban pengelola", value: reportData.answer },
-//     { title: "catatan tambahan", value: reportData.note },
-//   ];
-// };
+const renderContent = (reportData: Report) => {
+  return [
+    { title: "id", value: reportData.id },
+    { title: "judul", value: reportData.title },
+    { title: "jenis keluhan", value: reportData.type },
+    { title: "jawaban pengelola", value: reportData.answer },
+    { title: "catatan tambahan", value: reportData.note },
+    {
+      title: "user_id",
+      value: reportData?.user_id?.name ?? "-",
+      id: reportData?.user_id?.id ?? "-",
+    },
+  ];
+};
 
 export const columns: ColumnDef<Report>[] = [
   {
@@ -148,7 +153,10 @@ export const columns: ColumnDef<Report>[] = [
                 title={`keluhan #${reportIdSlice}`}
                 status={<Badge>Edit</Badge>}
               >
-                <UpdateReport />
+                <UpdateReport
+                  report={renderContent(reportData)}
+                  id={reportData.id}
+                />
               </ActionDataModal>
             </div>
 
