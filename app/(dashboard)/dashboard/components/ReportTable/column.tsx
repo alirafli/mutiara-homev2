@@ -148,16 +148,18 @@ export const columns: ColumnDef<Report>[] = [
                 </div>
               </ActionDataModal>
 
-              <ActionDataModal
-                trigger="Update"
-                title={`keluhan #${reportIdSlice}`}
-                status={<Badge>Edit</Badge>}
-              >
-                <UpdateReport
-                  report={renderContent(reportData)}
-                  id={reportData.id}
-                />
-              </ActionDataModal>
+              {reportData.status !== "selesai" && (
+                <ActionDataModal
+                  trigger="Update"
+                  title={`keluhan #${reportIdSlice}`}
+                  status={<Badge>Edit</Badge>}
+                >
+                  <UpdateReport
+                    report={renderContent(reportData)}
+                    id={reportData.id}
+                  />
+                </ActionDataModal>
+              )}
             </div>
 
             <DropdownMenuSeparator />
