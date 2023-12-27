@@ -59,7 +59,11 @@ export async function deleteReportById(id?: string) {
 }
 
 export async function editReport(
-  payload: z.infer<typeof FormSchema>,
+  payload:
+    | z.infer<typeof FormSchema>
+    | {
+        image_url?: string;
+      },
   id: string
 ) {
   const supabase = await createSupabaseServerClient();
@@ -77,4 +81,21 @@ export async function editReport(
   } catch (error) {
     return { data: null, error: error as Error };
   }
+}
+
+export async function uploadReportImage(
+  userId: string,
+  file: string,
+  fileName: string
+) {
+  const supabase = await createSupabaseServerClient();
+  const buffer = Buffer.from(file.split(",")[1], "base64");
+
+  const { data, error } = await supabase.storage
+    .from("images")
+    .upload(`report/${userId}_${fileName}.png`, buffer);
+
+  revalidatePath("/dashboard-profile");
+
+  return { data, error };
 }
