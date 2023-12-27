@@ -133,7 +133,7 @@ const AddReport = ({ handleModalOpen }: AddReportProps) => {
           name="image_url"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel htmlFor="picture">Foto KTP</FormLabel>
+              <FormLabel htmlFor="picture">foto keluhan</FormLabel>
               <FormControl>
                 <Input
                   type="file"
