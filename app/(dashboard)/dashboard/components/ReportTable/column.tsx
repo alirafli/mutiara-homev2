@@ -19,7 +19,7 @@ import { LuArrowDownUp } from "react-icons/lu";
 import ActionDataModal from "@/components/ui/actionDataModal";
 import AlertActionModal from "@/components/ui/AlertActionModal";
 import UpdateReport from "../UpdateReport";
-import { deleteReportById } from "../../actions";
+import { deleteReportById, deleteReportImage } from "../../actions";
 import Image from "next/image";
 
 const renderStatus = (status: string) => {
@@ -98,6 +98,7 @@ export const columns: ColumnDef<Report>[] = [
 
       const deleteReport = async () => {
         const result = await deleteReportById(reportData.id);
+        await deleteReportImage(reportData.image_url);
         if (result.error && result.error.message) {
           toast({
             title: `gagal menghapus ${reportIdSlice}`,

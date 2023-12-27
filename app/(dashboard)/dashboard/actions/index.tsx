@@ -95,7 +95,19 @@ export async function uploadReportImage(
     .from("images")
     .upload(`report/${userId}_${fileName}.png`, buffer);
 
-  revalidatePath("/dashboard-profile");
+  revalidatePath("/dashboard");
+
+  return { data, error };
+}
+
+export async function deleteReportImage(filePath?: string) {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase.storage
+    .from("images")
+    .remove([`${filePath}`]);
+
+  revalidatePath("/dashboard");
 
   return { data, error };
 }
